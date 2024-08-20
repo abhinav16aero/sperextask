@@ -33,7 +33,7 @@ const TokenTransfer = ({ walletAddress, tokenAddress }: { walletAddress: string;
       setError(null); // Clear any previous errors
     } catch (err) {
       console.error('Error during token transfer:', err);
-      setError('Transaction failed. Check the console for details.');
+      setError('Transaction failed.');
       setTransactionHash(null); // Clear transaction hash on error
     }
   };

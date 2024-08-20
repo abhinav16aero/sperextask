@@ -4,6 +4,7 @@ import WatchList from './components/WatchList';
 import HistoricalData from './components/HistoricalData';
 import Allowance from './components/Allowance';
 import TokenTransfer from './components/TokenTransfer';
+import './App.css';
 
 function App() {
   const [walletAddress, setWalletAddress] = useState('');
@@ -18,13 +19,25 @@ function App() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Token Portfolio Manager</h1>
-      <WalletConnection onChange={handleWalletAddressChange} />
-      <WatchList walletAddress={walletAddress} />
-      <HistoricalData walletAddress={walletAddress} tokenAddress={tokenAddress} />
-      <Allowance walletAddress={walletAddress} tokenAddress={tokenAddress} />
-      <TokenTransfer walletAddress={walletAddress} tokenAddress={tokenAddress} />
+    <div className="container">
+      <h1 className="text-2xl font-bold mb-4">SperexDAO Token Manager</h1>
+      <div className="grid">
+        <div className="card">
+          <WalletConnection onChange={handleWalletAddressChange} />
+        </div>
+        <div className="card">
+          <WatchList walletAddress={walletAddress} />
+        </div>
+        <div className="card">
+          <HistoricalData walletAddress={walletAddress} tokenAddress={tokenAddress} />
+        </div>
+        <div className="card">
+          <Allowance walletAddress={walletAddress} tokenAddress={tokenAddress} />
+        </div>
+        <div className="card">
+          <TokenTransfer walletAddress={walletAddress} tokenAddress={tokenAddress} />
+        </div>
+      </div>
     </div>
   );
 }

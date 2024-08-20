@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Import necessary components from Chart.js
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,7 +16,7 @@ import {
   Legend,
 } from 'chart.js';
 
-// Register components
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +27,7 @@ ChartJS.register(
   Legend
 );
 
-const API_KEY = '4P35FDRB8M6W8FMUWX7Y7CC8D146KD4N64'; // Replace with your Etherscan API key
+const API_KEY = '4P35FDRB8M6W8FMUWX7Y7CC8D146KD4N64'; 
 
 const HistoricalData = ({ walletAddress, tokenAddress }: { walletAddress: string; tokenAddress: string }) => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -36,7 +36,7 @@ const HistoricalData = ({ walletAddress, tokenAddress }: { walletAddress: string
 
   const fetchHistoricalData = async () => {
     if (startDate && endDate) {
-      // Convert dates to Unix timestamps
+      
       const startTimestamp = Math.floor(startDate.getTime() / 1000);
       const endTimestamp = Math.floor(endDate.getTime() / 1000);
 
@@ -55,14 +55,13 @@ const HistoricalData = ({ walletAddress, tokenAddress }: { walletAddress: string
 
         const transactions = response.data.result;
 
-        // Filter transactions based on the date range
+     
         const filteredTransactions = transactions.filter((tx: any) => {
           const txTimestamp = parseInt(tx.timeStamp, 10);
           return txTimestamp >= startTimestamp && txTimestamp <= endTimestamp;
         });
 
-        // Process filtered transactions into balance data
-        // This is a simple example; you may need more advanced logic for real applications
+        
         const balanceData = filteredTransactions.map((tx: any) => ({
           date: new Date(tx.timeStamp * 1000).toLocaleDateString(),
           balance: parseFloat(tx.value) / 1e18, // Convert Wei to Ether
